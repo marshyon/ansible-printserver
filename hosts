@@ -1,0 +1,8 @@
+[printserver]
+192.168.88.62
+
+[printserver:vars]
+ansible_connection=ssh
+ansible_user=jon
+ansible_python_interpreter=/usr/bin/python3
+hostname=printserver

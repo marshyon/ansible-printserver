@@ -1,0 +1,42 @@
+---
+  - name: install print packages
+    apt:
+      pkg:
+          - cups
+          - hplip
+          - printer-driver-gutenprint
+          - samba 
+          - samba-common-bin
+      state: present          
+      update_cache: true
+
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: yes
+
+  - name: Remove dependencies that are no longer required
+    apt:
+        autoremove: yes
+
+  - name: cupsd config
+    template:
+      src: cupsd.conf.j2
+      dest: /etc/cups/cupsd.conf
+      owner: root
+      group: lp
+      mode: 0640   
+    notify:
+    - restart service cups
+     
+
+  - name: samba config
+    template:
+      src: smb.conf.j2
+      dest: /etc/samba/smb.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+    - restart service smbd
+    - restart service nmbd
+

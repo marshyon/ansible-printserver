@@ -1,0 +1,6 @@
+printserver:
+  port: 631
+  browsing: "On"
+samba: 
+  browseable: "yes"
+  guest_ok: "yes"  

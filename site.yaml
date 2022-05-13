@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - vars/default.yml
+  roles:
+      - printserver
+  tasks:
+    - name: Install common packages
+      apt:
+        pkg:
+          - curl
+          - software-properties-common
+          - net-tools
+          - vim
+        state: latest
+        update_cache: true
+- hosts: printserver
+  become: true
+  vars_files:
+    - vars/default.yml
+  tasks:
+    - name: Set printserver hostname
+      ansible.builtin.hostname:
+        name: "{{ hostname }}"

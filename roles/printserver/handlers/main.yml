@@ -1,0 +1,15 @@
+- name: restart service cups
+  service:
+    name: cups
+    state: restarted      
+
+- name: restart service smbd
+  service:
+    name: smbd
+    state: restarted         
+
+- name: restart service nmbd
+  service:
+    name: nmbd
+    state: restarted      
+
